@@ -3,6 +3,12 @@ require('child_process')
 ~~~~~~~~~~~~~~~~~~~~~~~~        [Found require("child_process")]
 require(`child_process`)
 ~~~~~~~~~~~~~~~~~~~~~~~~        [Found require("child_process")]
+import 'child_process';
+~~~~~~~~~~~~~~~~~~~~~~~        [Found import "child_process"]
+import * as childp from 'child_process';
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~        [Found import "child_process"]
 const child = require('child_process'); child.exec(com)
               ~~~~~~~~~~~~~~~~~~~~~~~~                    [Found require("child_process")]
                                         ~~~~~~~~~~        [Found child_process.exec() with non StringLiteral first argument]
+childp.exec(com)
+~~~~~~~~~~~        [Found child_process.exec() with non StringLiteral first argument]

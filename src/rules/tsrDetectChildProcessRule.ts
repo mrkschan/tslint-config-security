@@ -49,6 +49,14 @@ function walk(ctx: Lint.WalkContext<void>) {
                 }
                 break;
             }
+            case ts.SyntaxKind.ImportDeclaration: {
+                const {moduleSpecifier} = node as ts.ImportDeclaration;
+
+                if ((moduleSpecifier as ts.StringLiteral).text === 'child_process') {
+                    ctx.addFailureAtNode(node, 'Found import "child_process"');
+                }
+                break;
+            }
             case ts.SyntaxKind.PropertyAccessExpression: {
                 const {name, expression} = node as ts.PropertyAccessExpression;
 
